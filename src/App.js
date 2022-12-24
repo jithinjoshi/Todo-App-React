@@ -1,14 +1,16 @@
 
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useRef} from 'react';
 import './App.css';
 import Form from './Components/Form';
 import TodoList from './Components/TodoList';
 
 function App() {
-  const [input, setInput] = useState("");
+  const inputTodo = useRef();
+
   const [todos, setTodos] = useState([]);
   const [filterStatus, setFilterStatus] = useState('all');
   const [filterData, setFilterData] = useState([]);
+  
 
   //filtering data
   const filterHandler = () => {
@@ -48,7 +50,7 @@ function App() {
       <header>
         Todo App
       </header>
-      <Form inputData={setInput} setTodos={setTodos} input={input} todos={todos} setFilterStatus={setFilterStatus} />
+      <Form  setTodos={setTodos} todos={todos} setFilterStatus={setFilterStatus} inputTodo={inputTodo}/>
       <TodoList todos={todos} setTodos={setTodos}  filterData={filterData}/>
     </div>
   );
